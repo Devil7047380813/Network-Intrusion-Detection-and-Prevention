@@ -18,12 +18,12 @@ def block_ip(ip):
             ["iptables", "-A", "INPUT", "-m", "set", "--match-set", "blacklist", "src", "-j", "DROP"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
         )
-        print(f"🔥 Blocked IP: {ip}")
+        print(f" Blocked IP: {ip}")
     except Exception as e:
         print(f"[!] Failed to block {ip}: {e}")
 
 def main():
-    print("[*] Monitoring Suricata alerts for attacks... 🚨\n")
+    print("[*] Monitoring Suricata alerts for attacks... \n")
 
     try:
         with open(EVE_LOG, "r") as logfile:
@@ -45,7 +45,7 @@ def main():
                     proto = event.get("proto", "N/A")
                     alert_msg = event["alert"].get("signature", "Unknown Attack")
 
-                    print("\n🚨 ATTACK DETECTED!")
+                    print("\n ATTACK DETECTED!")
                     print(f"   Attack Type   : {alert_msg}")
                     print(f"   Source IP     : {src_ip}")
                     print(f"   Destination IP: {dest_ip}")
